@@ -167,9 +167,6 @@ Timing properties:
 
 - `Program.fs`: main game source code (entry point included)
 - `nub_kal.fsproj`: F# project file targeting `.NET 10`
-- `Program1.fs`: old experimental file (not included in build)
-
-`nub_kal.fsproj` currently compiles only `Program.fs`.
 
 ---
 
