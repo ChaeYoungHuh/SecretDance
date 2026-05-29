@@ -175,19 +175,49 @@ Timing properties:
 
 ## 8) Requirement Changes and Justification
 
-After proposal submission, timing and difficulty constants were tuned multiple times.
-These changes are documented and justified as balancing work to keep gameplay readable in a console environment:
+The final game keeps the same core concept from the proposal (dance while the professor is not watching, stop when watched), but several requirements were refined after implementation and play-testing.
 
-- Added staged turning transitions (`profFrame3`, `profFrame4`) before full turn to improve observability.
-- Added controlled randomness in timing to avoid trivial fixed-pattern play.
-- Rebalanced gauge drain/refill and catch thresholds for better playability.
-- Removed in-game manual quit key to keep termination tied to game rules.
+### 8.1 Traceable Changes from Proposal
 
-These are refinements of the same game design, not a game-type change.
+- **R1 (title animation interval change)**  
+  Proposal version specified title-frame alternation every 1 second.  
+  Final version alternates title frames every 0.5 seconds.
+  **Why changed:** a 1-second cadence felt visually sluggish in terminal animation; 0.5 seconds made the start screen more readable and responsive without changing gameplay semantics.
+
+- **R3, R4, R7, R9, R10, R12, R13, R14 (status model change)**  
+  Proposal version used suspicion gauge + lives + fixed class timer.  
+  Final version uses a single **dance gauge** and immediate end conditions (`caught` / `classover`) without lives.
+  **Why changed:** in console rendering, managing three simultaneous resources (suspicion/time/lives) made readability poor and game feedback noisy. A single-resource model gave clearer, testable behavior and more stable pacing.
+
+- **R8 (turn-around behavior change)**  
+  Proposal version turned immediately and froze gauge for 2 seconds with warning text.  
+  Final version introduces staged transitions (`profFrame3` -> `profFrame4` -> `profFrameTurn`) with shrinking durations.
+  The warning banner text used in earlier iterations was removed, and the professor state is now communicated by frame transitions and color changes.
+  **Why changed:** immediate turning and text-heavy warning output felt abrupt/noisy in terminal animation; staged turning and visual-only signaling made the state clearer while keeping the screen less cluttered.
+
+- **R11 (scoring refinement)**  
+  Proposal version scored during any dance state.  
+  Final version scores only in front-facing phases, not while professor is effectively turning/watching.
+  **Why changed:** this prevents rewarding unsafe behavior and better matches the intended "dance secretly" rule.
+
+- **R15 (manual quit removal)**  
+  Proposal included key-based exit flow after endings, and earlier versions had manual quit during gameplay.  
+  Final version removes manual in-game quit and keeps exits tied to game outcomes plus final key press on result screen.
+  **Why changed:** keeps termination semantics aligned with game rules and avoids accidental early termination during evaluation.
+
+### 8.2 Difficulty-Tuning Changes
+
+- Added controlled random timing jitter to turn events.
+- Tuned turn interval shrink curves, transition durations, and catch threshold through repeated play-tests.
+- Rebalanced dance-gauge drain/refill rates and acceleration.
+
+**Why changed:** fixed deterministic timing was easy to exploit and produced repetitive play. The final tuned values maintain fairness while preventing trivial memorization.
+
+These are requirement refinements of the same game design, not a change of project type.
 
 ---
 
-## 9) LLM Usage Disclosure (Required by Course Policy)
+## 9) LLM Usage Disclosure
 
 This project used an LLM assistant during development.
 
@@ -204,14 +234,4 @@ This project used an LLM assistant during development.
 ### Main limitation observed
 
 - The LLM could suggest timing/state fixes quickly, but validating fairness and edge-case behavior still depended on manual play-testing.
-
----
-
-## 10) Reviewer Quick Checklist
-
-- [ ] `dotnet run` works on clean environment with .NET 10
-- [ ] README is sufficient to run and understand controls
-- [ ] Observable requirements can be checked by playing
-- [ ] End conditions and scoring match documented behavior
-
 
