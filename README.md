@@ -1,7 +1,6 @@
 # Dance Secretly Behind the Professor
 
-> [!NOTE]
-> Title art preview (wrapped in a code block to preserve spacing in GitHub rendering):
+
 >
 > ```text
 > ＿/＼／＼   /＼／\     /＼／     //＼／|＿
