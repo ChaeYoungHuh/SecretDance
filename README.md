@@ -1,6 +1,7 @@
 # Dance Secretly Behind the Professor
 
 
+
 >
 > ```text
 > ＿/＼／＼   /＼／\     /＼／     //＼／|＿
@@ -80,8 +81,8 @@ dotnet build
 
 ## 3) Controls
 
-- `A`: Start dancing
-- `D`: Stop dancing immediately
+- `A`: Start dancing, or switch to the next dance motion if already dancing (cycles: Motion 1 → 2 → 3 → 1 → ...)
+- `D`: Stop dancing immediately (only effective while dancing)
 - Any key on title screen: start game
 - Any key on result screen: exit program
 
@@ -106,8 +107,8 @@ These requirements are intentionally concrete so reviewers can evaluate them dir
 
 1. The game starts with an animated title screen and waits for a key input.
 2. During the game, student animation updates continuously and reacts to `A`/`D` key inputs.
-3. Pressing `A` starts student nubzukis (넙죽이) to dance; dance modes in order `1 -> 2 -> 3 -> 1 -> ...` (different dance motions are shown).
-4. Pressing `D` while dancing immediately returns to idle.
+3. Pressing `A` starts student nubzukis (넙죽이) to dance if idle, or switches to the next dance motion if they are already dancing. Motions cycle in order: Dance motion 1 → Dance motion 2 → Dance motion 3 → Dance motion 1 → ...
+4. Pressing `D` while dancing immediately returns to idle. Has no effect when already idle.
 5. A dance gauge is displayed as a bar with percentage and drain rate.
 6. Gauge starts full at the beginning of each run.
 7. While not dancing, gauge decreases continuously.
