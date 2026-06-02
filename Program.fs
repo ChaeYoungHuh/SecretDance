@@ -473,7 +473,7 @@ let main _ =
                 state.EndReason <- "classover"
                 state.Running <- false
 
-        // ── 게이지 감소 속도 가속 (매 4초마다) ──
+        // ── 게이지 감소 속도 가속 (매 5초마다) ──
         let elapsed = speedTimer.Elapsed.TotalSeconds
         if elapsed - lastSpeedUp >= 5.0 then
             lastSpeedUp <- elapsed
