@@ -44,6 +44,7 @@
       \  ⊂        \  ⊂        \  ⊂  
        c し'       c し'       c し'  
 
+[![SecretDance Demo](https://img.youtube.com/vi/WN8iRClbInI/maxresdefault.jpg)](https://youtu.be/WN8iRClbInI)
 
 Console game term project for **CS-20200 Programming Principles (Spring 2026)**.
 
@@ -81,7 +82,7 @@ dotnet build
 
 ## 3) Controls
 
-- `A`: Start dancing, or switch to the next dance motion if already dancing (cycles: Motion 1 → 2 → 3 → 1 → ...)
+- `A`: Start dancing (only effective when idle; each press cycles to the next motion: Motion 1 → 2 → 3 → 1 → ...)
 - `D`: Stop dancing immediately (only effective while dancing)
 - Any key on title screen: start game
 - Any key on result screen: exit program
@@ -107,7 +108,7 @@ These requirements are intentionally concrete so reviewers can evaluate them dir
 
 1. The game starts with an animated title screen and waits for a key input.
 2. During the game, student animation updates continuously and reacts to `A`/`D` key inputs.
-3. Pressing `A` starts student nubzukis (넙죽이) to dance if idle, or switches to the next dance motion if they are already dancing. Motions cycle in order: Dance motion 1 → Dance motion 2 → Dance motion 3 → Dance motion 1 → ...
+3. Pressing `A` while idle starts dancing with the next motion in the cycle: Motion 1 (running) → Motion 2 (swaying) → Motion 3 (jumping) → Motion 1 → ... Pressing `A` while already dancing has no effect.
 4. Pressing `D` while dancing immediately returns to idle. Has no effect when already idle.
 5. A dance gauge is displayed as a bar with percentage and drain rate.
 6. Gauge starts full at the beginning of each run.
