@@ -45,6 +45,7 @@
        c し'       c し'       c し'  
 
 [![SecretDance Demo](https://img.youtube.com/vi/WN8iRClbInI/maxresdefault.jpg)](https://youtu.be/WN8iRClbInI)
+link to youtube video! (click the image)
 
 Console game term project for **CS-20200 Programming Principles (Spring 2026)**.
 
